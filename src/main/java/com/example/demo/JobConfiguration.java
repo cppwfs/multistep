@@ -43,15 +43,18 @@ public class JobConfiguration {
 	@Autowired
 	public StepBuilderFactory stepBuilderFactory;
 
+	@Autowired
+	public MultistepProperties multistepProperties;
+
 	@Bean
 	public Job job1() {
-		return jobBuilderFactory.get("job1")
+		return jobBuilderFactory.get(multistepProperties.getJobName())
 				.start(stepBuilderFactory.get("job1step1")
 						.tasklet(new Tasklet() {
 							@Override
 							public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
 								logger.info("Step 1 Running");
-								Thread.sleep(20000);
+								Thread.sleep(multistepProperties.getWaitTime());
 								return RepeatStatus.FINISHED;
 							}
 						})
@@ -61,7 +64,7 @@ public class JobConfiguration {
 							@Override
 							public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
 								logger.info("Step2 Running");
-								Thread.sleep(20000);
+								Thread.sleep(multistepProperties.getWaitTime());
 								return RepeatStatus.FINISHED;
 							}
 						})
@@ -71,7 +74,7 @@ public class JobConfiguration {
 							@Override
 							public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
 								logger.info("Step3 Running");
-								Thread.sleep(20000);
+								Thread.sleep(multistepProperties.getWaitTime());
 								return RepeatStatus.FINISHED;
 							}
 						})
@@ -81,7 +84,7 @@ public class JobConfiguration {
 							@Override
 							public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
 								logger.info("Step4 Running");
-								Thread.sleep(20000);
+								Thread.sleep(multistepProperties.getWaitTime());
 								return RepeatStatus.FINISHED;
 							}
 						})

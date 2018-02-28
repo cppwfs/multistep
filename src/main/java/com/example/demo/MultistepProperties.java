@@ -25,7 +25,7 @@ public class MultistepProperties {
 
 	private String jobName = "job1";
 
-	private int waitTime = 10000;
+	private int waitTime = 1;
 
 	public String getJobName() {
 		return jobName;

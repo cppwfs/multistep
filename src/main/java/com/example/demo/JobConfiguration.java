@@ -85,6 +85,7 @@ public class JobConfiguration {
 							public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
 								logger.info("Step4 Running");
 								Thread.sleep(multistepProperties.getWaitTime());
+//								if (true) throw new IllegalStateException("WHOOPS");
 								return RepeatStatus.FINISHED;
 							}
 						})
@@ -93,4 +94,20 @@ public class JobConfiguration {
 				.build();
 	}
 
-}
+//	@Bean
+//	public Job job2() {
+//		return jobBuilderFactory.get("JOB2FUN")
+//				.start(stepBuilderFactory.get("job2step1")
+//						.tasklet(new Tasklet() {
+//							@Override
+//							public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
+//								logger.info("Step 1 Running");
+//								Thread.sleep(multistepProperties.getWaitTime());
+////								if (true) throw new IllegalStateException("WHOOPS");
+//								return RepeatStatus.FINISHED;
+//							}
+//						})
+//						.build())
+//				.build();
+//	}
+	}
